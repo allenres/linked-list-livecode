@@ -1,0 +1,11 @@
+Node {value, next}
+
+
+current = head
+count = 0;
+
+while current is not null:
+    count++
+    current = current.next
+
+return count
