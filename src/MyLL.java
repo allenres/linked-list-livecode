@@ -1,32 +1,49 @@
-public class MyLL {
-    private class Node {
-        public char value;
-        public Node next;
+public class MyLL<T> {
+    private class Node<E> {
+        public E value;
+        public Node<E> next;
+        public Node<E> prev;
 
-        public Node(char value, Node next) {
+        public Node(Node<E> prev, E value, Node<E> next) {
+            this.prev = prev;
             this.value = value;
             this.next = next;
         }
     }
 
-    private Node head;
+    private Node<T> head;
 
     public MyLL() {
         head = null;
     }
 
     public void printList() {
-        Node current = head;
+        Node<T> current = head;
         while (current != null) {
             System.out.println(current.value);
             current = current.next;
         }
     }
 
-    public boolean contains(char toFind) {
-        Node current = head;
+    public void addToBack(T toAdd) {
+        Node<T> newNode = new Node(null, toAdd, null);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+
+        Node<T> current = head;
+        while(current.next != null) {
+            current = current.next;
+        }
+        current.next = newNode;
+        newNode.prev = current;
+    }
+
+    public boolean contains(T toFind) {
+        Node<T> current = head;
         while (current != null) {
-            if (current.value == toFind) {
+            if (current.value.equals(toFind)) {
                 return true;
             }
             current = current.next;
@@ -35,25 +52,35 @@ public class MyLL {
     }
 
     // remove the first node that has toRemove
-    public char remove(char toRemove) {
+    public T remove(T toRemove) {
         if (head == null) {
-            return '\0';
+            return null;
         }
 
-        if(head.value == toRemove) {
+        if(head.value.equals(toRemove)) {
             head = head.next;
         }
 
-        Node current = head;
+        Node<T> current = head;
 
         while (current.next != null) {
-            if (current.next.value == toRemove) {
+            if (current.next.value.equals(toRemove)) {
                 current.next = current.next.next;
                 return toRemove;
             }
             current = current.next;
         }
-        return '\0';
+        return null;
     }
 
+    public void printBackwords() {
+        Node<T> current = head;
+        while(current.next != null) {
+            current = current.next;
+        }
+        while(current != null) {
+            System.out.println(current.value);
+            current = current.prev;
+        }
+    }
 }

@@ -1,18 +1,36 @@
 public class Practice {
     public static void main(String[] args) {
-        Node head = new Node('g', null);
-        Node ryan = new Node('s', null);
-        head.next = ryan;
-        ryan.next = new Node('t', null);
-        ryan.next.next = new Node('x', null); 
+        // Node head = new Node('g', null);
+        // Node ryan = new Node('s', null);
+        // head.next = ryan;
+        // ryan.next = new Node('t', null);
+        // ryan.next.next = new Node('x', null); 
 
-        // expect to pritn true
-        System.out.println(contains(head, 'x'));
-        // expect to print false
-        System.out.println(contains(head, 'z'));
+        // // expect to pritn true
+        // System.out.println(contains(head, 'x'));
+        // // expect to print false
+        // System.out.println(contains(head, 'z'));
 
-        remove(head, 'g');
-        printList(head);
+        // remove(head, 'g');
+        // printList(head);
+
+        // MyLL<Character> list = new MyLL<>();
+        // list.addToBack('x');
+        // list.addToBack('m');
+        // list.addToBack('v');
+        // list.addToBack('q');
+
+        // list.printList();
+
+        MyLL<Integer> intList = new MyLL<>();
+        intList.addToBack(5);
+        intList.addToBack(99);
+        intList.addToBack(2);
+        intList.addToBack(-333333);
+        intList.addToBack(66);
+        intList.printList();
+        System.out.println();
+        intList.printBackwords();
     }
 
     public static void printList(Node start) {
